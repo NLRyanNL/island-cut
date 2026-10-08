@@ -1,0 +1,111 @@
+{
+  "name": "islandcut",
+  "productName": "IslandCut",
+  "version": "0.1.1",
+  "description": "IslandCut - a free desktop video editor for Fortnite / UEFN trailers",
+  "main": "dist/electron/main.cjs",
+  "private": true,
+  "author": "IslandCut",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/fetch-fonts.mjs && vite build && node scripts/build-electron.mjs",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder --win --x64",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "tsx --test tests/*.test.ts",
+    "release": "npm run build && node scripts/privacy-check.mjs && electron-builder --win nsis portable --x64 --publish never && node scripts/privacy-check.mjs --release"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "^44.6.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0"
+  },
+  "build": {
+    "appId": "com.islandcut.app",
+    "productName": "IslandCut",
+    "directories": {
+      "output": "release",
+      "buildResources": "resources"
+    },
+    "files": [
+      "dist/**",
+      "!dist/**/*.map",
+      "package.json",
+      "!node_modules/ffprobe-static/bin/darwin/**",
+      "!node_modules/ffprobe-static/bin/linux/**",
+      "!node_modules/ffprobe-static/bin/win32/ia32/**"
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**",
+      "node_modules/ffprobe-static/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "resources/icon.ico",
+      "legalTrademarks": "IslandCut"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "IslandCut",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "IslandCut-Setup-${version}.${ext}",
+      "installerIcon": "resources/icon.ico",
+      "uninstallerIcon": "resources/icon.ico"
+    },
+    "extraResources": [
+      {
+        "from": "resources/icon.png",
+        "to": "icon.png"
+      },
+      {
+        "from": "resources/icon.ico",
+        "to": "icon.ico"
+      },
+      {
+        "from": "resources/fonts",
+        "to": "fonts",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "resources/licenses",
+        "to": "licenses",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "copyright": "Copyright © 2026 IslandCut",
+    "portable": {
+      "artifactName": "IslandCut-Portable-${version}.${ext}"
+    }
+  },
+  "islandcut": {
+    "statsUrl": "",
+    "updateRepo": "NLRyanNL/island-cut"
+  }
+}

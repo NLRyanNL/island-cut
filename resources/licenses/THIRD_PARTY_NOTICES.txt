@@ -1,0 +1,35 @@
+IslandCut - third-party software notices
+=========================================
+
+IslandCut is free to download and use. It is built with, and ships, the following
+third-party software. Each keeps its own licence.
+
+FFmpeg / FFprobe (video and audio engine)
+-----------------------------------------
+IslandCut runs the FFmpeg and FFprobe programs (separate executables in
+resources\app.asar.unpacked\node_modules\ffmpeg-static and ffprobe-static).
+These Windows builds are licensed under the GNU General Public License version 3
+(GPLv3) because they include GPL components such as x264.
+  - FFmpeg project and complete source code: https://ffmpeg.org/download.html
+  - Licence text: https://www.gnu.org/licenses/gpl-3.0.html
+  - Packaging: https://github.com/eugeneware/ffmpeg-static and
+    https://github.com/joshwnj/ffprobe-static
+You may request the corresponding source code of the exact FFmpeg build at any
+time; it is also available from the links above.
+
+Electron and Chromium (application shell)
+-----------------------------------------
+MIT licence (Electron) and the Chromium licences, included next to IslandCut.exe
+as LICENSE.electron.txt and LICENSES.chromium.html.
+
+React
+-----
+MIT licence, Copyright (c) Meta Platforms, Inc. and affiliates.
+
+Fonts (resources\fonts)
+-----------------------
+The bundled fonts are distributed under the SIL Open Font License 1.1 (or the
+Apache License 2.0 where noted). Each font's licence file is in resources\fonts
+next to the font (<font>.LICENSE.txt). Fonts were obtained through the Fontsource
+project (https://fontsource.org) from Google Fonts. The fonts may be used freely in
+your videos, including commercial videos.
